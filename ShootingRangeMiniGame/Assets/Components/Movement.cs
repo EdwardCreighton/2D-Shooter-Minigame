@@ -2,7 +2,7 @@
 
 namespace ShootingRangeMiniGame.Assets.Components
 {
-	public class Movement
+	public struct Movement
 	{
 		public Vector2 Direction;
 		public float Speed;
