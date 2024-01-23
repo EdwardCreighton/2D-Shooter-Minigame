@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using ShootingRangeMiniGame.Engine;
+using ShootingRangeMiniGame.Assets.Systems;
 
 namespace ShootingRangeMiniGame.Assets
 {
@@ -7,7 +8,8 @@ namespace ShootingRangeMiniGame.Assets
 	{
 		public override void AssignSystems(EcsSystems gameplaySystems)
 		{
-		
+			gameplaySystems
+				.Add(new TargetsLoader());
 		}
 	}
 }
