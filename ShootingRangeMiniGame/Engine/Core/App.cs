@@ -7,12 +7,13 @@ namespace ShootingRangeMiniGame.Engine.Core
 		private System.Windows.Forms.Timer _timer;
 		private EcsWorld _world;
 		private EcsSystems _systemsRoot;
+		private EcsSystems _gameplaySystems;
 
-		public App()
+		public App(GameplaySystemsLoader gameplaySystemsLoader)
 		{
 			CreateWindow();
 			CreateTimer();
-			CreateEcsInfrastructure();
+			CreateEcsInfrastructure(gameplaySystemsLoader);
 		}
 
 		protected override void Dispose(bool disposing)
@@ -41,12 +42,17 @@ namespace ShootingRangeMiniGame.Engine.Core
 			_timer.Tick += (_, _) => GameLoopTick();
 		}
 
-		private void CreateEcsInfrastructure()
+		private void CreateEcsInfrastructure(GameplaySystemsLoader gameplaySystemsLoader)
 		{
 			_world = new EcsWorld();
 
 			_systemsRoot = new EcsSystems(_world);
-			_systemsRoot.Init();
+			_gameplaySystems = new EcsSystems(_world);
+			gameplaySystemsLoader.AssignSystems(_gameplaySystems);
+			
+			_systemsRoot
+				.Add(_gameplaySystems)
+				.Init();
 		}
 
 		private void GameLoopTick()
