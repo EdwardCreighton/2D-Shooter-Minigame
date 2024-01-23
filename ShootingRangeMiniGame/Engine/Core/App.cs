@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using ShootingRangeMiniGame.Engine.Systems;
 
 namespace ShootingRangeMiniGame.Engine.Core
 {
@@ -52,6 +53,8 @@ namespace ShootingRangeMiniGame.Engine.Core
 			
 			_systemsRoot
 				.Add(_gameplaySystems)
+				.Add(new PhysicsSystem())
+				.Add(new RenderSystem())
 				.Init();
 		}
 
