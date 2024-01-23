@@ -10,6 +10,7 @@ namespace ShootingRangeMiniGame.Assets
 		{
 			gameplaySystems
 				.Add(new TargetsLoader())
+				.Add(new TargetsOnCollisionResolver())
 				.Add(new TargetsMovementSystem());
 		}
 	}

@@ -43,7 +43,7 @@ namespace ShootingRangeMiniGame.Engine.Core
 		private void CreateTimer()
 		{
 			_timer = new();
-			_timer.Interval = 20;
+			_timer.Interval = 10;
 			_timer.Tick += (_, _) => GameLoopTick();
 
 			UpdateDeltaTime = _timer.Interval / 1000f;

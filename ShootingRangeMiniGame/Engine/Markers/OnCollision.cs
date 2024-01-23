@@ -3,7 +3,7 @@ using Leopotam.Ecs;
 
 namespace ShootingRangeMiniGame.Engine.Markers
 {
-	public struct OnCollision : IEcsIgnoreInFilter
+	public struct OnCollision
 	{
 		public EcsEntity? OtherEntity;
 		public Vector2 Point;

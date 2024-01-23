@@ -42,7 +42,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 				ref var movement = ref targetEntity.Get<Movement>();
 				movement.Direction = new Vector2(Random.Shared.Next(-100, 100), Random.Shared.Next(-100, 100));
 				movement.Direction = Vector2.Normalize(movement.Direction);
-				movement.Speed = 100;
+				movement.Speed = 400;
 			}
 		}
 	}
