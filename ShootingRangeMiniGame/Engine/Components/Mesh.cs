@@ -1,6 +1,7 @@
-﻿namespace ShootingRangeMiniGame.Engine.Components;
-
-public struct Mesh
+﻿namespace ShootingRangeMiniGame.Engine.Components
 {
-	
+	public struct Mesh
+	{
+		public Point[] Points;
+	}
 }

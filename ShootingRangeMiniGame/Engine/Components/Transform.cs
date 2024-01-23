@@ -2,8 +2,8 @@
 
 namespace ShootingRangeMiniGame.Engine.Components
 {
-	public struct Collider
+	public struct Transform
 	{
-		public Vector2[] BoundingBox;
+		public Vector2 Position;
 	}
 }
