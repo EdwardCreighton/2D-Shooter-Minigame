@@ -5,6 +5,8 @@ namespace ShootingRangeMiniGame.Engine.Core
 {
 	public sealed partial class App : Form
 	{
+		public float UpdateDeltaTime { get; private set; }
+		
 		private System.Windows.Forms.Timer _timer;
 		private EcsWorld _world;
 		private EcsSystems _systemsRoot;
@@ -19,7 +21,9 @@ namespace ShootingRangeMiniGame.Engine.Core
 
 		protected override void Dispose(bool disposing)
 		{
+			_timer.Stop();
 			_timer.Dispose();
+			_timer = null;
 			
 			_systemsRoot?.Destroy();
 			_systemsRoot = null;
@@ -41,6 +45,8 @@ namespace ShootingRangeMiniGame.Engine.Core
 			_timer = new();
 			_timer.Interval = 20;
 			_timer.Tick += (_, _) => GameLoopTick();
+
+			UpdateDeltaTime = _timer.Interval / 1000f;
 		}
 
 		private void CreateEcsInfrastructure(GameplaySystemsLoader gameplaySystemsLoader)
@@ -55,6 +61,7 @@ namespace ShootingRangeMiniGame.Engine.Core
 				.Add(_gameplaySystems)
 				.Add(new PhysicsSystem())
 				.Add(new RenderSystem())
+				.Inject(this)
 				.Init();
 		}
 

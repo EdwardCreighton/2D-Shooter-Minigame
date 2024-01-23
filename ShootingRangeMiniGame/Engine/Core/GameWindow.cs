@@ -1,9 +1,12 @@
-﻿namespace ShootingRangeMiniGame.Engine.Core
+﻿using ShootingRangeMiniGame.Engine.Components;
+
+namespace ShootingRangeMiniGame.Engine.Core
 {
 	public partial class App
 	{
 		public Size ScreenSize { get; private set; }
-		
+		public List<Mesh> Meshes { get; private set; }
+
 		private void CreateWindow()
 		{
 			ScreenSize = new Size(800, 800);
@@ -18,11 +21,20 @@
 			CreateGraphics();
 			
 			DoubleBuffered = true;
+
+			Meshes = new List<Mesh>();
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			e.Graphics.Clear(Color.LightBlue);
+			e.Graphics.Clear(Color.White);
+
+			for (int i = 0; i < Meshes.Count; i++)
+			{
+				e.Graphics.FillPolygon(Meshes[i].FillColor, Meshes[i].Points);
+			}
+			
+			Meshes.Clear();
 			
 			base.OnPaint(e);
 		}
