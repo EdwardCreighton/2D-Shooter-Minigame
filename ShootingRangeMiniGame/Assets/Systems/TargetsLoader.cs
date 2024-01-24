@@ -12,13 +12,13 @@ namespace ShootingRangeMiniGame.Assets.Systems
 		
 		public void Init()
 		{
-			for (int i = 0; i < 1; i++)
+			for (int i = 0; i < 2; i++)
 			{
 				EcsEntity targetEntity = _world.NewEntity();
 				targetEntity.Get<TargetMarker>();
 
 				ref var transform = ref targetEntity.Get<Transform>();
-				transform.Position = new Vector2(100, 100);
+				transform.Position = new Vector2(100 + i * 200, 100 + i * 200);
 
 				ref var mesh = ref targetEntity.Get<Mesh>();
 				mesh.FillColor = new SolidBrush(Color.Gray);

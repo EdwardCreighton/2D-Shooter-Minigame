@@ -17,8 +17,8 @@ namespace ShootingRangeMiniGame.Assets.Systems
 			{
 				ref var collisionInfo = ref _filter.Get2(i);
 
-				if (collisionInfo.OtherEntity != null)
-					return;
+				if (!collisionInfo.OtherEntity.IsNull() && !collisionInfo.OtherEntity.Has<TargetMarker>())
+					continue;
 				
 				ref var movement = ref _filter.GetEntity(i).Get<Movement>();
 				ref var transform = ref _filter.GetEntity(i).Get<Transform>();

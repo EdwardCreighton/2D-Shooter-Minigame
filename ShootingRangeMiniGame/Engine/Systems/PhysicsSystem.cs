@@ -25,7 +25,7 @@ namespace ShootingRangeMiniGame.Engine.Systems
 				if (CheckScreenBoundaries(ref transform, ref collider, ref collisionPoint))
 				{
 					ref var collisionMarker = ref _filter.GetEntity(i).Get<OnCollision>();
-					collisionMarker.OtherEntity = null;
+					collisionMarker.OtherEntity = EcsEntity.Null;
 					collisionMarker.Point = collisionPoint;
 				}
 
@@ -36,11 +36,16 @@ namespace ShootingRangeMiniGame.Engine.Systems
 
 					if (AABB(ref transform, ref tr2, ref collider, ref cl2))
 					{
+						Vector2 cp = (transform.Position + tr2.Position) / 2;
+
 						ref var collisionMarker1 = ref _filter.GetEntity(i).Get<OnCollision>();
-						collisionMarker1.OtherEntity = _filter.GetEntity(j);
-						
 						ref var collisionMarker2 = ref _filter.GetEntity(j).Get<OnCollision>();
+						
+						collisionMarker1.OtherEntity = _filter.GetEntity(j);
 						collisionMarker2.OtherEntity = _filter.GetEntity(i);
+						
+						collisionMarker1.Point = cp;
+						collisionMarker2.Point = cp;
 					}
 				}
 			}
