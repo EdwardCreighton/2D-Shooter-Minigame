@@ -53,7 +53,9 @@ namespace ShootingRangeMiniGame.Engine.Systems
 
 		private void ClearOnCollisionEvents()
 		{
-			for (int i = 0; i < _collisionEventFilter.GetEntitiesCount(); i++)
+			int rawCount = _collisionEventFilter.GetEntitiesCount();
+			
+			for (int i = 0; i < rawCount; i++)
 			{
 				_collisionEventFilter.GetEntity(i).Del<OnCollision>();
 			}
