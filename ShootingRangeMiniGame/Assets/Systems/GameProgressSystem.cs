@@ -10,6 +10,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 	{
 		private EcsFilter<Weapon, PlayerMarker> _playerWeaponFilter;
 		private EcsFilter<Projectile> _projectilesFilter;
+		private EcsFilter<TargetMarker> _targetsFilter;
 
 		private DataProvider _dataProvider;
 		private App _app;
@@ -26,16 +27,17 @@ namespace ShootingRangeMiniGame.Assets.Systems
 			_timeLeft -= _app.UpdateDeltaTime;
 			_app.SetCountdownTimer((int)Math.Ceiling(_timeLeft));
 
-			if (_timeLeft <= 0)
+			if (_targetsFilter.GetEntitiesCount() == 0)
 			{
-				_app.RestartGame();
-				return;
+				_app.EndGame();
 			}
-
-			if (_playerWeaponFilter.Get1(0).BulletsLeft == 0 && _projectilesFilter.GetEntitiesCount() == 0)
+			else if (_timeLeft <= 0)
 			{
-				_app.RestartGame();
-				return;
+				_app.EndGame();
+			}
+			else if (_playerWeaponFilter.Get1(0).BulletsLeft == 0 && _projectilesFilter.GetEntitiesCount() == 0)
+			{
+				_app.EndGame();
 			}
 		}
 	}

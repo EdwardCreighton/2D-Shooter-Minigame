@@ -38,7 +38,12 @@ namespace ShootingRangeMiniGame.Engine.Core
 			base.OnLoad(e);
 		}
 
-		public void RestartGame()
+		public void EndGame()
+		{
+			RestartGame();
+		}
+
+		private void RestartGame()
 		{
 			DeleteTimer();
 			DeleteEcsInfrastructure();
