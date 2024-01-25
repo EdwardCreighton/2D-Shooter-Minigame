@@ -26,6 +26,7 @@ namespace ShootingRangeMiniGame.Assets
 
 				.Add(new TargetsOnCollisionResolver())
 				.Add(new ProjectilesOnCollisionResolver())
+				.Add(new GameProgressSystem())
 
 				.Add(new MovementSystem())
 

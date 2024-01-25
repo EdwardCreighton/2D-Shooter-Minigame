@@ -8,27 +8,25 @@ namespace ShootingRangeMiniGame.Engine.Core
 		public float UpdateDeltaTime { get; private set; }
 		
 		private System.Windows.Forms.Timer _timer;
+		
 		private EcsWorld _world;
 		private EcsSystems _systemsRoot;
 		private EcsSystems _gameplaySystems;
+		private IGameplaySystemsLoader _gameplayLoader;
 
 		public App(IGameplaySystemsLoader gameplaySystemsLoader)
 		{
+			_gameplayLoader = gameplaySystemsLoader;
+			
 			CreateWindow();
 			CreateTimer();
-			CreateEcsInfrastructure(gameplaySystemsLoader);
+			CreateEcsInfrastructure();
 		}
 
 		protected override void Dispose(bool disposing)
 		{
-			_timer.Stop();
-			_timer.Dispose();
-			_timer = null;
-			
-			_systemsRoot?.Destroy();
-			_systemsRoot = null;
-			_world?.Destroy();
-			_world = null;
+			DeleteTimer();
+			DeleteEcsInfrastructure();
 			
 			base.Dispose(disposing);
 		}
@@ -40,22 +38,41 @@ namespace ShootingRangeMiniGame.Engine.Core
 			base.OnLoad(e);
 		}
 
+		public void RestartGame()
+		{
+			DeleteTimer();
+			DeleteEcsInfrastructure();
+
+			CreateTimer();
+			CreateEcsInfrastructure();
+			
+			_timer.Start();
+		}
+
 		private void CreateTimer()
 		{
 			_timer = new();
 			_timer.Interval = 10;
-			_timer.Tick += (_, _) => GameLoopTick();
+			_timer.Tick += GameLoopTick;
 
 			UpdateDeltaTime = _timer.Interval / 1000f;
 		}
 
-		private void CreateEcsInfrastructure(IGameplaySystemsLoader gameplaySystemsLoader)
+		private void DeleteTimer()
+		{
+			_timer.Stop();
+			_timer.Tick -= GameLoopTick;
+			_timer.Dispose();
+			_timer = null;
+		}
+
+		private void CreateEcsInfrastructure()
 		{
 			_world = new EcsWorld();
 
 			_systemsRoot = new EcsSystems(_world);
 			_gameplaySystems = new EcsSystems(_world);
-			gameplaySystemsLoader.AssignSystems(_gameplaySystems);
+			_gameplayLoader.AssignSystems(_gameplaySystems);
 			
 			_systemsRoot
 				.Add(_gameplaySystems)
@@ -65,7 +82,15 @@ namespace ShootingRangeMiniGame.Engine.Core
 				.Init();
 		}
 
-		private void GameLoopTick()
+		private void DeleteEcsInfrastructure()
+		{
+			_systemsRoot?.Destroy();
+			_systemsRoot = null;
+			_world?.Destroy();
+			_world = null;
+		}
+
+		private void GameLoopTick(object? sender, EventArgs e)
 		{
 			_systemsRoot.Run();
 

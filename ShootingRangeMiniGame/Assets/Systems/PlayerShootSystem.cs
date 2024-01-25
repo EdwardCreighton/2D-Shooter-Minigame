@@ -16,7 +16,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 		{
 			ref var weapon = ref _filter.GetEntity(0).Get<Weapon>();
 
-			if (weapon.BulletsLeft <= 0)
+			if (weapon.BulletsLeft == 0)
 				return;
 
 			if (weapon.ReloadElapsed < weapon.ReloadDuration)
@@ -37,6 +37,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 				onSpawnProjectile.Direction = aimDirection;
 
 				weapon.ReloadElapsed = 0f;
+				weapon.BulletsLeft--;
 			}
 		}
 	}
