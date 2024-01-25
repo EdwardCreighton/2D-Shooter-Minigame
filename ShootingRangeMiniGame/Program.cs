@@ -1,5 +1,5 @@
-using ShootingRangeMiniGame.Assets;
 using ShootingRangeMiniGame.Engine.Core;
+using ShootingRangeMiniGame.Assets;
 
 namespace ShootingRangeMiniGame
 {
@@ -8,13 +8,8 @@ namespace ShootingRangeMiniGame
 		[STAThread]
 		static void Main()
 		{
-			// To customize application configuration such as set high DPI settings or default font,
-			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
-
-			var gameplaySystemsLoader = new ShootingRangeMiniGameLoader();
-			
-			Application.Run(new App(gameplaySystemsLoader));
+			Application.Run(new App(new ShootingRangeMiniGameLoader()));
 		}
 	}
 }

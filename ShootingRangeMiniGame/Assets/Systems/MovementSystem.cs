@@ -1,7 +1,7 @@
 ﻿using Leopotam.Ecs;
 using ShootingRangeMiniGame.Engine.Core;
-using ShootingRangeMiniGame.Assets.Components;
 using ShootingRangeMiniGame.Engine.Components;
+using ShootingRangeMiniGame.Assets.Components;
 
 namespace ShootingRangeMiniGame.Assets.Systems
 {

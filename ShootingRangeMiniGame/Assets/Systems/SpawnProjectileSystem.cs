@@ -1,8 +1,8 @@
 ﻿using System.Numerics;
 using Leopotam.Ecs;
 using ShootingRangeMiniGame.Engine.Components;
-using ShootingRangeMiniGame.Assets.Components;
 using ShootingRangeMiniGame.Assets.Data;
+using ShootingRangeMiniGame.Assets.Components;
 
 namespace ShootingRangeMiniGame.Assets.Systems
 {

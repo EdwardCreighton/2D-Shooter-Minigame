@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using ShootingRangeMiniGame.Engine.Components;
+﻿using ShootingRangeMiniGame.Engine.Components;
 
 namespace ShootingRangeMiniGame.Engine.Core
 {
