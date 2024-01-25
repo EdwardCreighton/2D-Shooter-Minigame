@@ -2,13 +2,14 @@
 using Leopotam.Ecs;
 using ShootingRangeMiniGame.Engine.Components;
 using ShootingRangeMiniGame.Assets.Components;
-using ShootingRangeMiniGame.Assets.Markers;
+using ShootingRangeMiniGame.Assets.Data;
 
 namespace ShootingRangeMiniGame.Assets.Systems
 {
 	public class SpawnProjectileSystem : IEcsRunSystem
 	{
 		private EcsFilter<OnSpawnProjectile> _filter;
+		private DataProvider _dataProvider;
 		private EcsWorld _world;
 
 		public void Run()
@@ -29,7 +30,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 				
 				ref var movement = ref entity.Get<Movement>();
 				movement.Direction = onSpawn.Direction;
-				movement.Speed = 600f;
+				movement.Speed = _dataProvider.ProjectileSpeed;
 
 				ref var mesh = ref entity.Get<Mesh>();
 				mesh.FillColor = new SolidBrush(Color.Goldenrod);
