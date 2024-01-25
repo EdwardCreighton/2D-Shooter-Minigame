@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Numerics;
+using System.Text.RegularExpressions;
 
 namespace ShootingRangeMiniGame.Assets.Data
 {
@@ -8,6 +9,47 @@ namespace ShootingRangeMiniGame.Assets.Data
 		public int ProjectileSpeed { get; private set; }
 		public int Time { get; private set; }
 		public int BulletsCount { get; private set; }
+
+		public Point[] PlayerMesh { get; } =
+		{
+			new (-15, -15),
+			new (15, -15),
+			new (15, -7),
+			new (55, -7),
+			new (55, 7),
+			new (15, 7),
+			new (15, 15),
+			new (-15, 15),
+		};
+		public Point[] TargetMesh { get; } =
+		{
+			new(-20, -20),
+			new(20, -20),
+			new(20, 20),
+			new(-20, 20),
+		};
+		public Point[] ProjectileMesh { get; } =
+		{
+			new (-5, -5),
+			new (5, -5),
+			new (5, 5),
+			new (-5, 5),
+		};
+		
+		public Vector2[] TargetBoundingBox { get; } =
+		{
+			new (-20, -20),
+			new (20, -20),
+			new (20, 20),
+			new (-20, 20)
+		};
+		public Vector2[] ProjectileBoundingBox { get; } =
+		{
+			new (-5f, -5f),
+			new (5f, -5f),
+			new (5f, 5f),
+			new (-5f, 5f)
+		};
 		
 		public DataProvider()
 		{

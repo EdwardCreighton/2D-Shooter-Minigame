@@ -25,17 +25,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 
 			ref var mesh = ref entity.Get<Mesh>();
 			mesh.FillColor = Brushes.MidnightBlue;
-			mesh.Points = new[]
-			{
-				new Point(-15, -15),
-				new Point(15, -15),
-				new Point(15, -7),
-				new Point(55, -7),
-				new Point(55, 7),
-				new Point(15, 7),
-				new Point(15, 15),
-				new Point(-15, 15),
-			};
+			mesh.Points = _dataProvider.PlayerMesh;
 
 			ref var weapon = ref entity.Get<Weapon>();
 			weapon.ReloadDuration = 1f;

@@ -29,22 +29,10 @@ namespace ShootingRangeMiniGame.Assets.Systems
 
 				ref var mesh = ref targetEntity.Get<Mesh>();
 				mesh.FillColor = new SolidBrush(Color.DarkRed);
-				mesh.Points = new[]
-				{
-					new Point(-20, -20),
-					new Point(20, -20),
-					new Point(20, 20),
-					new Point(-20, 20),
-				};
+				mesh.Points = _dataProvider.TargetMesh;
 
 				ref var collider = ref targetEntity.Get<Collider>();
-				collider.BoundingBox = new[]
-				{
-					new Vector2(-20, -20),
-					new Vector2(20, -20),
-					new Vector2(20, 20),
-					new Vector2(-20, 20),
-				};
+				collider.BoundingBox = _dataProvider.TargetBoundingBox;
 
 				ref var movement = ref targetEntity.Get<Movement>();
 				movement.Direction = new Vector2(Random.Shared.Next(-100, 100), Random.Shared.Next(-100, 100));

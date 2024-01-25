@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using Leopotam.Ecs;
+﻿using Leopotam.Ecs;
 using ShootingRangeMiniGame.Engine.Components;
 using ShootingRangeMiniGame.Assets.Data;
 using ShootingRangeMiniGame.Assets.Components;
@@ -35,23 +34,11 @@ namespace ShootingRangeMiniGame.Assets.Systems
 
 				ref var mesh = ref entity.Get<Mesh>();
 				mesh.FillColor = new SolidBrush(Color.Goldenrod);
-				mesh.Points = new[]
-				{
-					new Point(-5, -5),
-					new Point(5, -5),
-					new Point(5, 5),
-					new Point(-5, 5),
-				};
+				mesh.Points = _dataProvider.ProjectileMesh;
 
 				ref var collider = ref entity.Get<Collider>();
-				collider.BoundingBox = new[]
-				{
-					new Vector2(-5f, -5f),
-					new Vector2(5f, -5f),
-					new Vector2(5f, 5f),
-					new Vector2(-5f, 5f),
-				};
-				
+				collider.BoundingBox = _dataProvider.ProjectileBoundingBox;
+
 				_filter.GetEntity(i).Del<OnSpawnProjectile>();
 			}
 		}
