@@ -19,7 +19,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 			Vector2 aimDirection = _app.MousePosition - transform.Position;
 			aimDirection = Vector2.Normalize(aimDirection);
 			float angleRad = (float)Math.Atan2(aimDirection.Y, aimDirection.X);
-			transform.Rotation = (360f + angleRad * MathE.Rad2Deg);
+			transform.Rotation = 360f + angleRad * MathE.Rad2Deg;
 		}
 	}
 }
