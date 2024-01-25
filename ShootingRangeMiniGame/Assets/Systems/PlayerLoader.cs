@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using Leopotam.Ecs;
+using ShootingRangeMiniGame.Assets.Components;
 using ShootingRangeMiniGame.Engine.Core;
 using ShootingRangeMiniGame.Engine.Components;
 using ShootingRangeMiniGame.Assets.Markers;
@@ -33,6 +34,10 @@ namespace ShootingRangeMiniGame.Assets.Systems
 				new Point(15, 15),
 				new Point(-15, 15),
 			};
+
+			ref var weapon = ref entity.Get<Weapon>();
+			weapon.ReloadDuration = 1f;
+			weapon.ReloadElapsed = 0f;
 		}
 	}
 }
