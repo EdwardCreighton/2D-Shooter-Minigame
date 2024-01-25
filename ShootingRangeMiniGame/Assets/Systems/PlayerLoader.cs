@@ -2,6 +2,7 @@
 using Leopotam.Ecs;
 using ShootingRangeMiniGame.Engine.Core;
 using ShootingRangeMiniGame.Engine.Components;
+using ShootingRangeMiniGame.Assets.Data;
 using ShootingRangeMiniGame.Assets.Components;
 using ShootingRangeMiniGame.Assets.Markers;
 
@@ -9,6 +10,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 {
 	public class PlayerLoader : IEcsInitSystem
 	{
+		private DataProvider _dataProvider;
 		private App _app;
 		private EcsWorld _world;
 		
@@ -38,6 +40,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 			ref var weapon = ref entity.Get<Weapon>();
 			weapon.ReloadDuration = 1f;
 			weapon.ReloadElapsed = 0f;
+			weapon.BulletsLeft = _dataProvider.BulletsCount;
 		}
 	}
 }

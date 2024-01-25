@@ -4,5 +4,6 @@
 	{
 		public float ReloadDuration;
 		public float ReloadElapsed;
+		public int BulletsLeft;
 	}
 }

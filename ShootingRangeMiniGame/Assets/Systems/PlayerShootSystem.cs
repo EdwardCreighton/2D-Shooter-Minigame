@@ -16,6 +16,9 @@ namespace ShootingRangeMiniGame.Assets.Systems
 		{
 			ref var weapon = ref _filter.GetEntity(0).Get<Weapon>();
 
+			if (weapon.BulletsLeft <= 0)
+				return;
+
 			if (weapon.ReloadElapsed < weapon.ReloadDuration)
 			{
 				weapon.ReloadElapsed += _app.UpdateDeltaTime;
