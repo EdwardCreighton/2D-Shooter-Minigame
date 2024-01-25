@@ -12,7 +12,7 @@ namespace ShootingRangeMiniGame.Engine.Core
 		private EcsSystems _systemsRoot;
 		private EcsSystems _gameplaySystems;
 
-		public App(GameplaySystemsLoader gameplaySystemsLoader)
+		public App(IGameplaySystemsLoader gameplaySystemsLoader)
 		{
 			CreateWindow();
 			CreateTimer();
@@ -49,7 +49,7 @@ namespace ShootingRangeMiniGame.Engine.Core
 			UpdateDeltaTime = _timer.Interval / 1000f;
 		}
 
-		private void CreateEcsInfrastructure(GameplaySystemsLoader gameplaySystemsLoader)
+		private void CreateEcsInfrastructure(IGameplaySystemsLoader gameplaySystemsLoader)
 		{
 			_world = new EcsWorld();
 

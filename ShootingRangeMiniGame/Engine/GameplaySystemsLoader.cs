@@ -2,8 +2,8 @@
 
 namespace ShootingRangeMiniGame.Engine
 {
-	public abstract class GameplaySystemsLoader
+	public interface IGameplaySystemsLoader
 	{
-		public abstract void AssignSystems(EcsSystems gameplaySystems);
+		public void AssignSystems(EcsSystems gameplaySystems);
 	}
 }

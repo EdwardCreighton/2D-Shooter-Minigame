@@ -4,9 +4,9 @@ using ShootingRangeMiniGame.Assets.Systems;
 
 namespace ShootingRangeMiniGame.Assets
 {
-	public class ShootingRangeMiniGameLoader : GameplaySystemsLoader
+	public class ShootingRangeMiniGameLoader : IGameplaySystemsLoader
 	{
-		public override void AssignSystems(EcsSystems gameplaySystems)
+		public void AssignSystems(EcsSystems gameplaySystems)
 		{
 			gameplaySystems
 				.Add(new PlayerLoader())
