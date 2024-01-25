@@ -5,7 +5,6 @@ namespace ShootingRangeMiniGame.Engine.Core
 {
 	public partial class App
 	{
-		public Vector2 MousePosition { get; private set; }
 		public Size ScreenSize { get; private set; }
 		public List<Mesh> Meshes { get; private set; }
 
@@ -19,7 +18,6 @@ namespace ShootingRangeMiniGame.Engine.Core
 			MaximizeBox = false;
 			MinimizeBox = false;
 			Text = "Shooting Range Mini Game";
-			MouseMove += OnMouseMove;
 
 			CreateGraphics();
 			
@@ -40,11 +38,6 @@ namespace ShootingRangeMiniGame.Engine.Core
 			Meshes.Clear();
 			
 			base.OnPaint(e);
-		}
-
-		private void OnMouseMove(object? sender, MouseEventArgs e)
-		{
-			MousePosition = new Vector2(e.Location.X, e.Location.Y);
 		}
 	}
 }

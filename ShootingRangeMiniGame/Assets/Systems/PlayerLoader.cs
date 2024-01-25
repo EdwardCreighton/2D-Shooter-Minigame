@@ -21,7 +21,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 			transform.Position = new Vector2(_app.ScreenSize.Width / 2f, _app.ScreenSize.Height - 200);
 
 			ref var mesh = ref entity.Get<Mesh>();
-			mesh.FillColor = Brushes.DarkRed;
+			mesh.FillColor = Brushes.MidnightBlue;
 			mesh.Points = new[]
 			{
 				new Point(-15, -15),
