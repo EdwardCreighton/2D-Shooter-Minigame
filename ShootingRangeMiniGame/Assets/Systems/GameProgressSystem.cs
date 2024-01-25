@@ -15,30 +15,25 @@ namespace ShootingRangeMiniGame.Assets.Systems
 		private DataProvider _dataProvider;
 		private App _app;
 
-		private float _timeLeft;
-
 		public void Init()
 		{
-			_timeLeft = _dataProvider.Time;
+			ref var gameProgressData = ref _app.GameProgressData;
+			gameProgressData.TimeLeft = _dataProvider.Time;
+			gameProgressData.InitialTime = _dataProvider.Time;
+			gameProgressData.InitialTargetsCount = _dataProvider.TargetsCount;
+			gameProgressData.InitialBulletsCount = _dataProvider.BulletsCount;
 		}
 
 		public void Run()
 		{
-			_timeLeft -= _app.UpdateDeltaTime;
-			_app.SetCountdownTimer((int)Math.Ceiling(_timeLeft));
-
-			if (_targetsFilter.GetEntitiesCount() == 0)
-			{
-				_app.EndGame();
-			}
-			else if (_timeLeft <= 0)
-			{
-				_app.EndGame();
-			}
-			else if (_playerWeaponFilter.Get1(0).BulletsLeft == 0 && _projectilesFilter.GetEntitiesCount() == 0)
-			{
-				_app.EndGame();
-			}
+			ref var weapon = ref _playerWeaponFilter.Get1(0);
+			
+			ref var gameProgressData = ref _app.GameProgressData;
+			gameProgressData.TimeLeft -= _app.UpdateDeltaTime;
+			gameProgressData.TargetsLeft = _targetsFilter.GetEntitiesCount();
+			gameProgressData.WeaponReady = weapon.ReloadElapsed >= weapon.ReloadDuration;
+			gameProgressData.BulletsLeft = weapon.BulletsLeft;
+			gameProgressData.FreeProjectiles = _projectilesFilter.GetEntitiesCount();
 		}
 	}
 }

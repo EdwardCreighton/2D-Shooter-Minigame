@@ -6,8 +6,12 @@ namespace ShootingRangeMiniGame.Engine.Core
 	public sealed partial class App : Form
 	{
 		public float UpdateDeltaTime { get; private set; }
+		public ref GameProgressData GameProgressData => ref _gameProgressData;
 		
 		private System.Windows.Forms.Timer _timer;
+
+		private GameProgressData _gameProgressData;
+		private bool _running;
 		
 		private EcsWorld _world;
 		private EcsSystems _systemsRoot;
@@ -27,31 +31,19 @@ namespace ShootingRangeMiniGame.Engine.Core
 		{
 			DeleteTimer();
 			DeleteEcsInfrastructure();
+			DeleteWindow();
 			
 			base.Dispose(disposing);
 		}
 
 		protected override void OnLoad(EventArgs e)
 		{
+			_endOfGameUIPanel.Visible = false;
+			_running = true;
+			
 			_timer.Start();
 
 			base.OnLoad(e);
-		}
-
-		public void EndGame()
-		{
-			RestartGame();
-		}
-
-		private void RestartGame()
-		{
-			DeleteTimer();
-			DeleteEcsInfrastructure();
-
-			CreateTimer();
-			CreateEcsInfrastructure();
-			
-			_timer.Start();
 		}
 
 		private void CreateTimer()
@@ -97,9 +89,58 @@ namespace ShootingRangeMiniGame.Engine.Core
 
 		private void GameLoopTick(object? sender, EventArgs e)
 		{
+			if (!_running)
+				return;
+			
 			_systemsRoot.Run();
+			CheckGameResult();
+
+			UpdateGameProgress();
 
 			Invalidate();
+		}
+
+		private void EndGame()
+		{
+			_gameUIPanel.Visible = false;
+			_endOfGameUIPanel.Visible = true;
+			_running = false;
+			
+			UpdateEndOfGameStatus();
+		}
+
+		private void RestartGame()
+		{
+			DeleteTimer();
+			DeleteEcsInfrastructure();
+
+			CreateTimer();
+			CreateEcsInfrastructure();
+			
+			_gameUIPanel.Visible = true;
+			_endOfGameUIPanel.Visible = false;
+			_running = true;
+			
+			_timer.Start();
+		}
+
+		private void CheckGameResult()
+		{
+			if (_gameProgressData.TargetsLeft == 0)
+			{
+				_gameProgressData.GameResult = true;
+				EndGame();
+			}
+			else if (_gameProgressData.TimeLeft <= 0)
+			{
+				_gameProgressData.GameResult = false;
+				EndGame();
+			}
+			else if (_gameProgressData.BulletsLeft == 0 && _gameProgressData.FreeProjectiles == 0)
+			{
+				_gameProgressData.GameResult = false;
+				EndGame();
+			}
 		}
 	}
 }
