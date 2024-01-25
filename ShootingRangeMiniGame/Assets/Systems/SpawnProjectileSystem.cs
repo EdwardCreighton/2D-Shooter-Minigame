@@ -9,6 +9,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 	public class SpawnProjectileSystem : IEcsRunSystem
 	{
 		private EcsFilter<OnSpawnProjectile> _filter;
+		
 		private DataProvider _dataProvider;
 		private EcsWorld _world;
 

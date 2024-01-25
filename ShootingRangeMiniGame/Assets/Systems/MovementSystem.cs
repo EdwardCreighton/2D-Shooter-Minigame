@@ -7,8 +7,9 @@ namespace ShootingRangeMiniGame.Assets.Systems
 {
 	public class MovementSystem : IEcsRunSystem
 	{
-		private App _app;
 		private EcsFilter<Movement, Transform> _filter;
+		
+		private App _app;
 
 		public void Run()
 		{

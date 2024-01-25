@@ -10,6 +10,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 	public class PlayerShootSystem : IEcsRunSystem
 	{
 		private EcsFilter<PlayerMarker> _filter;
+		
 		private App _app;
 		
 		public void Run()
