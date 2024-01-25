@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using Leopotam.Ecs;
 
-namespace ShootingRangeMiniGame.Engine.Markers
+namespace ShootingRangeMiniGame.Engine.Components
 {
 	public struct OnCollision
 	{

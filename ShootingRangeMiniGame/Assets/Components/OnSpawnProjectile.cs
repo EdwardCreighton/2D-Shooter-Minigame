@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace ShootingRangeMiniGame.Assets.Markers
+namespace ShootingRangeMiniGame.Assets.Components
 {
 	public struct OnSpawnProjectile
 	{

@@ -2,7 +2,6 @@
 using Leopotam.Ecs;
 using ShootingRangeMiniGame.Engine.Core;
 using ShootingRangeMiniGame.Engine.Components;
-using ShootingRangeMiniGame.Engine.Markers;
 
 namespace ShootingRangeMiniGame.Engine.Systems
 {

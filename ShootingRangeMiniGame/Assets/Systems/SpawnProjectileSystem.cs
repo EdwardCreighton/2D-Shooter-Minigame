@@ -20,7 +20,9 @@ namespace ShootingRangeMiniGame.Assets.Systems
 				ref var onSpawn = ref _filter.Get1(i);
 				
 				EcsEntity entity = _world.NewEntity();
-				entity.Get<ProjectileMarker>();
+				
+				ref var projectile = ref entity.Get<Projectile>();
+				projectile.Durability = 3;
 
 				ref var transform = ref entity.Get<Transform>();
 				transform.Position = onSpawn.Position;
