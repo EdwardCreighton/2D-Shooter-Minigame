@@ -9,6 +9,7 @@ namespace ShootingRangeMiniGame.Assets
 		public override void AssignSystems(EcsSystems gameplaySystems)
 		{
 			gameplaySystems
+				.Add(new PlayerLoader())
 				.Add(new TargetsLoader())
 				.Add(new TargetsOnCollisionResolver())
 				.Add(new TargetsMovementSystem());

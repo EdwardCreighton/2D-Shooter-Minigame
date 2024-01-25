@@ -24,19 +24,19 @@ namespace ShootingRangeMiniGame.Assets.Systems
 				mesh.FillColor = new SolidBrush(Color.Gray);
 				mesh.Points = new[]
 				{
-					new Point(-40, -40),
-					new Point(40, -40),
-					new Point(40, 40),
-					new Point(-40, 40),
+					new Point(-20, -20),
+					new Point(20, -20),
+					new Point(20, 20),
+					new Point(-20, 20),
 				};
 
 				ref var collider = ref targetEntity.Get<Collider>();
 				collider.BoundingBox = new[]
 				{
-					new Vector2(-40, -40),
-					new Vector2(40, -40),
-					new Vector2(40, 40),
-					new Vector2(-40, 40),
+					new Vector2(-20, -20),
+					new Vector2(20, -20),
+					new Vector2(20, 20),
+					new Vector2(-20, 20),
 				};
 
 				ref var movement = ref targetEntity.Get<Movement>();

@@ -17,21 +17,40 @@ namespace ShootingRangeMiniGame.Assets.Systems
 			{
 				ref var collisionInfo = ref _filter.Get2(i);
 
-				if (!collisionInfo.OtherEntity.IsNull() && !collisionInfo.OtherEntity.Has<TargetMarker>())
-					continue;
-				
-				ref var movement = ref _filter.GetEntity(i).Get<Movement>();
-				ref var transform = ref _filter.GetEntity(i).Get<Transform>();
-				
-				Vector2 directionToHitPoint = collisionInfo.Point - transform.Position;
-				
-				if (Math.Abs(directionToHitPoint.X) > Math.Abs(directionToHitPoint.Y))
+				if (collisionInfo.OtherEntity.IsNull())
 				{
-					movement.Direction.X *= -1;
+					ref var movement = ref _filter.GetEntity(i).Get<Movement>();
+					ref var transform = ref _filter.GetEntity(i).Get<Transform>();
+				
+					Vector2 directionToHitPoint = collisionInfo.Point - transform.Position;
+				
+					if (Math.Abs(directionToHitPoint.X) > Math.Abs(directionToHitPoint.Y))
+					{
+						movement.Direction.X *= -1;
+					}
+					else
+					{
+						movement.Direction.Y *= -1;
+					}
 				}
-				else
+				else if (collisionInfo.OtherEntity.Has<TargetMarker>())
 				{
-					movement.Direction.Y *= -1;
+					ref var movement = ref _filter.GetEntity(i).Get<Movement>();
+					ref var transform = ref _filter.GetEntity(i).Get<Transform>();
+
+					Vector2 directionToHitPoint = collisionInfo.Point - transform.Position;
+
+					if (Math.Abs(directionToHitPoint.X) > Math.Abs(directionToHitPoint.Y))
+					{
+						movement.Direction.X *= -1;
+					}
+					else
+					{
+						movement.Direction.Y *= -1;
+					}
+
+					movement.Direction += -directionToHitPoint;
+					movement.Direction = Vector2.Normalize(movement.Direction);
 				}
 			}
 		}

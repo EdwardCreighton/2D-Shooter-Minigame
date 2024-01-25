@@ -1,6 +1,6 @@
 ﻿using Leopotam.Ecs;
-using ShootingRangeMiniGame.Engine.Components;
 using ShootingRangeMiniGame.Engine.Core;
+using ShootingRangeMiniGame.Engine.Components;
 
 namespace ShootingRangeMiniGame.Engine.Systems
 {
@@ -18,8 +18,14 @@ namespace ShootingRangeMiniGame.Engine.Systems
 				
 				for (int j = 0; j < mesh.Points.Length; j++)
 				{
-					mesh.Points[j].X += (int)Math.Round(transform.Position.X);
-					mesh.Points[j].Y += (int)Math.Round(transform.Position.Y);
+					int x = mesh.Points[j].X;
+					int y = mesh.Points[j].Y;
+					float angleRad = transform.Rotation * MathE.Deg2Rad;
+					float cos = (float)Math.Cos(angleRad);
+					float sin = (float)Math.Sin(angleRad);
+
+					mesh.Points[j].X = (int)Math.Round(cos * x - sin * y + transform.Position.X);
+					mesh.Points[j].Y = (int)Math.Round(sin * x + cos * y + transform.Position.Y);
 				}
 				
 				_app.Meshes.Add(mesh);
