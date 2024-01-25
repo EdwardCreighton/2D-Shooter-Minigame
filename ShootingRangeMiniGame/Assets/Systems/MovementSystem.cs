@@ -6,17 +6,17 @@ using ShootingRangeMiniGame.Engine.Components;
 
 namespace ShootingRangeMiniGame.Assets.Systems
 {
-	public class TargetsMovementSystem : IEcsRunSystem
+	public class MovementSystem : IEcsRunSystem
 	{
 		private App _app;
-		private EcsFilter<TargetMarker, Movement> _filter;
+		private EcsFilter<Movement, Transform> _filter;
 
 		public void Run()
 		{
 			for (int i = 0; i < _filter.GetEntitiesCount(); i++)
 			{
-				ref var transform = ref _filter.GetEntity(i).Get<Transform>();
-				ref var movement = ref _filter.Get2(i);
+				ref var movement = ref _filter.Get1(i);
+				ref var transform = ref _filter.Get2(i);
 
 				transform.Position += movement.Direction * (movement.Speed * _app.UpdateDeltaTime);
 			}

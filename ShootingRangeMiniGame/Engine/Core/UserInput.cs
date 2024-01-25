@@ -12,11 +12,6 @@ namespace ShootingRangeMiniGame.Engine.Core
 			base.OnMouseMove(e);
 
 			MousePosition = new Vector2(e.Location.X, e.Location.Y);
-		}
-
-		protected override void OnMouseDown(MouseEventArgs e)
-		{
-			base.OnMouseDown(e);
 
 			LeftMouseButtonPressed = e.Button == MouseButtons.Left;
 		}

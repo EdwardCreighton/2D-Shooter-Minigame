@@ -18,7 +18,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 			entity.Get<PlayerMarker>();
 
 			ref var transform = ref entity.Get<Transform>();
-			transform.Position = new Vector2(_app.ScreenSize.Width / 2f, _app.ScreenSize.Height - 200);
+			transform.Position = new Vector2(_app.ScreenSize.Width / 2f, _app.ScreenSize.Height - 40);
 
 			ref var mesh = ref entity.Get<Mesh>();
 			mesh.FillColor = Brushes.MidnightBlue;

@@ -12,8 +12,9 @@ namespace ShootingRangeMiniGame.Assets
 				.Add(new PlayerLoader())
 				.Add(new TargetsLoader())
 				.Add(new PlayerInputSystem())
+				.Add(new SpawnProjectileSystem())
 				.Add(new TargetsOnCollisionResolver())
-				.Add(new TargetsMovementSystem());
+				.Add(new MovementSystem());
 		}
 	}
 }
