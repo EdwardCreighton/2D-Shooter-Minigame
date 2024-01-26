@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using ShootingRangeMiniGame.Engine;
 
 namespace ShootingRangeMiniGame.Assets.Data
