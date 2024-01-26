@@ -28,7 +28,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 				transform.Position = new Vector2(xPosBase + Random.Shared.Next(-20, 20), yPosBase + Random.Shared.Next(-20, 20));
 
 				ref var mesh = ref targetEntity.Get<Mesh>();
-				mesh.FillColor = new SolidBrush(Color.DarkRed);
+				mesh.FillColor = _dataProvider.TargetFillColor;
 				mesh.Points = _dataProvider.TargetMesh;
 
 				ref var collider = ref targetEntity.Get<Collider>();

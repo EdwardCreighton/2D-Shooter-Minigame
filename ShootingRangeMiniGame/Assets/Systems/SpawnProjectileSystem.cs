@@ -33,7 +33,7 @@ namespace ShootingRangeMiniGame.Assets.Systems
 				movement.Speed = _dataProvider.ProjectileSpeed;
 
 				ref var mesh = ref entity.Get<Mesh>();
-				mesh.FillColor = new SolidBrush(Color.Goldenrod);
+				mesh.FillColor = _dataProvider.BulletFillColor;
 				mesh.Points = _dataProvider.ProjectileMesh;
 
 				ref var collider = ref entity.Get<Collider>();

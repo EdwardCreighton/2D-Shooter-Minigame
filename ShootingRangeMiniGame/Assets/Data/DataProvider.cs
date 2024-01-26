@@ -39,6 +39,10 @@ namespace ShootingRangeMiniGame.Assets.Data
 
 		public BoundingBox TargetBoundingBox { get; } = new(-20f, -20f, 40f, 40f);
 		public BoundingBox ProjectileBoundingBox { get; } = new(-5f, -5f, 10f, 10f);
+
+		public Brush PlayerFillColor { get; } = new SolidBrush(Color.MediumBlue);
+		public Brush TargetFillColor { get; } = new SolidBrush(Color.DarkRed);
+		public Brush BulletFillColor { get; } = new SolidBrush(Color.Goldenrod);
 		
 		public DataProvider()
 		{
