@@ -49,6 +49,7 @@ namespace ShootingRangeMiniGame.Engine.Core
 			Meshes = null;
 			
 			_defaultFontFamily.Dispose();
+			_defaultFontFamily = null;
 		}
 
 		private void CreateGameUI()

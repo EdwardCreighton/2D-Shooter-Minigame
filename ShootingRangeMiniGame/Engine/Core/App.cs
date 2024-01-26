@@ -5,6 +5,8 @@ namespace ShootingRangeMiniGame.Engine.Core
 {
 	public sealed partial class App : Form
 	{
+		private const int TickIntervalMilliseconds = 10;
+		
 		public float UpdateDeltaTime { get; private set; }
 		public ref GameProgressData GameProgressData => ref _gameProgressData;
 		
@@ -16,7 +18,7 @@ namespace ShootingRangeMiniGame.Engine.Core
 		private EcsWorld _world;
 		private EcsSystems _systemsRoot;
 		private EcsSystems _gameplaySystems;
-		private IGameplaySystemsLoader _gameplayLoader;
+		private readonly IGameplaySystemsLoader _gameplayLoader;
 
 		public App(IGameplaySystemsLoader gameplaySystemsLoader)
 		{
@@ -29,8 +31,8 @@ namespace ShootingRangeMiniGame.Engine.Core
 
 		protected override void Dispose(bool disposing)
 		{
-			DeleteTimer();
 			DeleteEcsInfrastructure();
+			DeleteTimer();
 			DeleteWindow();
 			
 			base.Dispose(disposing);
@@ -49,7 +51,7 @@ namespace ShootingRangeMiniGame.Engine.Core
 		private void CreateTimer()
 		{
 			_timer = new();
-			_timer.Interval = 10;
+			_timer.Interval = TickIntervalMilliseconds;
 			_timer.Tick += GameLoopTick;
 
 			UpdateDeltaTime = _timer.Interval / 1000f;
@@ -83,6 +85,7 @@ namespace ShootingRangeMiniGame.Engine.Core
 		{
 			_systemsRoot?.Destroy();
 			_systemsRoot = null;
+			_gameplaySystems = null;
 			_world?.Destroy();
 			_world = null;
 		}
