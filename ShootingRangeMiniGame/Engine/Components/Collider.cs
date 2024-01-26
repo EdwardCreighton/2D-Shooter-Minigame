@@ -1,9 +1,7 @@
-﻿using System.Numerics;
-
-namespace ShootingRangeMiniGame.Engine.Components
+﻿namespace ShootingRangeMiniGame.Engine.Components
 {
 	public struct Collider
 	{
-		public Vector2[] BoundingBox;
+		public BoundingBox BoundingBox;
 	}
 }
